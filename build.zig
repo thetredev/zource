@@ -12,7 +12,7 @@ pub fn build(b: *std.Build) void {
     });
 
     _ = pydust.addPythonModule(.{
-        .name = "fibonacci._lib",
+        .name = "zource.fibonacci",
         .root_source_file = b.path("src/fib.zig"),
         .limited_api = true,
         .target = target,
