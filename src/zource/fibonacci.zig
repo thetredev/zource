@@ -35,7 +35,11 @@ pub fn nth_fibonacci_recursive_tail(args: struct { n: u64 }) u64 {
 fn fibonacci_recursive_tail(n: u64, f0: u64, f1: u64) u64 {
     if (n == 0) return f0;
     if (n == 1) return f1;
-    return @call(.always_tail, fibonacci_recursive_tail, .{ n - 1, f1, f0 + f1 });
+    return @call(
+        .always_tail,
+        fibonacci_recursive_tail,
+        .{ n - 1, f1, f0 + f1 },
+    );
 }
 
 // Exposing it through a Python class.
@@ -52,7 +56,11 @@ pub const Fibonacci = py.class(struct {
 
     // Get an iterator over the first `self.first_n` Fibonacci numbers.
     pub fn __iter__(self: *const Self) !*FibonacciIterator.definition {
-        return try py.init(root, FibonacciIterator.definition, .{ .i = 0, .ith = 0, .next = 1, .stop = self.first_n });
+        return try py.init(
+            root,
+            FibonacciIterator.definition,
+            .{ .i = 0, .ith = 0, .next = 1, .stop = self.first_n },
+        );
     }
 });
 
@@ -100,21 +108,32 @@ test "fibonacci iterative" {
     py.initialize();
     defer py.finalize();
 
-    std.debug.print("{d}\n", .{nth_fibonacci_iterative(.{ .n = 9 })});
+    std.debug.print("{d}\n", .{
+        nth_fibonacci_iterative(.{ .n = 9 }),
+    });
 
-    try testing.expectEqual(@as(u64, 34), nth_fibonacci_iterative(.{ .n = 9 }));
+    try testing.expectEqual(
+        @as(u64, 34),
+        nth_fibonacci_iterative(.{ .n = 9 }),
+    );
 }
 
 test "fibonacci recursive" {
     py.initialize();
     defer py.finalize();
 
-    try testing.expectEqual(@as(u64, 34), nth_fibonacci_recursive(.{ .n = 9 }));
+    try testing.expectEqual(
+        @as(u64, 34),
+        nth_fibonacci_recursive(.{ .n = 9 }),
+    );
 }
 
 test "fibonacci recursive tail" {
     py.initialize();
     defer py.finalize();
 
-    try testing.expectEqual(@as(u64, 34), nth_fibonacci_recursive_tail(.{ .n = 9 }));
+    try testing.expectEqual(
+        @as(u64, 34),
+        nth_fibonacci_recursive_tail(.{ .n = 9 }),
+    );
 }
