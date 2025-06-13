@@ -170,3 +170,6 @@ zig-out/
 
 # UV
 uv.lock
+
+# shared object output directory
+/zource
