@@ -2,6 +2,8 @@
 
 HEAVILY WIP at the moment.
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/thetredev/zource)
+
 ## The Plan
 
 Reimplement Source.Python (https://github.com/Source-Python-Dev-Team/Source.Python) using Zig (https://ziglang.org/) and Ziggy Pydust (https://pydust.fulcrum.so/latest/) as the bridge layer for Python (https://python.org/) instead of C++ (https://cppreference.com/) and Boost.Python (https://www.boost.org/doc/libs/latest/libs/python/doc/html/index.html).
