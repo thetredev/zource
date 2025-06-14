@@ -161,6 +161,7 @@ zig-out/
 /build/
 /build-*/
 /docgen_tmp/
+pydust.build.zig
 
 # IDE
 .idea/
